@@ -2,10 +2,9 @@
 
 A simple action that allows you to add comments to the PR in your workflow.
 
-You can do multiple comments during the workflow execution via different identifiers. See example [bellow](example).
+You can do multiple comments during the workflow execution via different identifiers. See example [below](example).
 
 ![image](https://user-images.githubusercontent.com/9574457/101458359-14360080-3937-11eb-9e5c-dde50b2687c8.png)
-
 
 ## Inputs
 
@@ -28,6 +27,7 @@ It's required to provide `message` or `file` input. If both are provided `messag
 ## Usage
 
 ### Simple comment
+
 ```yaml
 uses: NejcZdovc/comment-pr@v2
 with:
@@ -37,6 +37,7 @@ env:
 ```
 
 ### Simple comment via file
+
 ```yaml
 uses: NejcZdovc/comment-pr@v2
 with:
@@ -62,16 +63,19 @@ When you need to pass data from the workflow info file you just define a new env
 That will be automatically replaced in the template.
 
 Example of `comment.md` that uses `DATA` env variable.
+
 ```md
 It's almost the end of {DATA}!
 ```
 
 ### Multiple comments
+
 By specifying different `identifier` per step we will now track two different comments, and they will be updated accordingly.
+
 ```yaml
 steps:
   - name: Checkout
-    uses: actions/checkout@v3
+    uses: actions/checkout@v6
   - name: Comment Checkout
     uses: NejcZdovc/comment-pr@v2
     with:
@@ -80,7 +84,7 @@ steps:
     env:
       GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
   - name: Get time
-    uses: actions/github-script@v6
+    uses: actions/github-script@v9
     id: get-time
     with:
         script: return new Date().toString()
@@ -95,13 +99,15 @@ steps:
 ```
 
 ### In action
+
 Checkout workflow in action in this repo, follow this [link](workflow).
 
 ## GitHub token
 
 You can pass GitHub token two ways:
 
-#### Via input
+### Via input
+
 ```yaml
 uses: NejcZdovc/comment-pr@v2
 with:
@@ -110,6 +116,7 @@ with:
 ```
 
 #### Via environment variable  
+
 ```yaml
 uses: NejcZdovc/comment-pr@v2
 with:
@@ -119,12 +126,12 @@ env:
 ```
 
 ## Bugs
+
 Please file an issue for bugs, missing documentation, or unexpected behavior.
 
 ## LICENSE
 
 [MIT](license)
-
-[license]: https://github.com/NejcZdovc/comment-pr/blob/master/LICENSE
-[example]: https://github.com/NejcZdovc/comment-pr#multiple-comments
-[workflow]: https://github.com/NejcZdovc/comment-pr/blob/main/.github/workflows/example.yml
+[license]: <https://github.com/NejcZdovc/comment-pr/blob/master/LICENSE>
+[example]: <https://github.com/NejcZdovc/comment-pr#multiple-comments>
+[workflow]: <https://github.com/NejcZdovc/comment-pr/blob/main/.github/workflows/example.yml>
